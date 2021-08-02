@@ -1,9 +1,10 @@
 import ujson as json
 
+
 class Database:
     def __init__(self):
-        self.db = json.load(open("./database.json"))
-        
+        self.db = json.load(open('./database.json'))
+
     def new_user_id(self, user_id: int, genshin_id=int):
         self.db[user_id] = genshin_id
         self.save()
@@ -13,7 +14,7 @@ class Database:
             if key == str(user_id):
                 return value
         return False
-    
+
     def find_by_user_uid(self, uid: int):
         for key, value in self.db.items():
             if value == str(uid):

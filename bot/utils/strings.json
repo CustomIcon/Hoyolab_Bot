@@ -1,0 +1,13 @@
+{
+    "start": "This bot is currently under Development,\n\n**Available Commands:**\n- /login - login to your hoyolab account\n- /logout - log out from the bot",
+    "NotLoggedIn": "You are not logged in, login using /login command.",
+    "LoggedOutSuccess": "✅ Logged out Successful!",
+    "PlayerNotFound": "__can't find player with that UID__",
+    "DataNotPublic": "Data is not public, please Login to your hoyolab account, go to profile and make user data public, and you may use /login (UID) once again__",
+    "UIDNotFound": "Which part of UID did you not understand?\nExample: `/login in_game_UID`",
+    "UIDExists": "Player with UID `{}` already logged in with another Telegram Account!, if this is your real account contact @CustomIcon to get yourself added",
+    "LoginSuccess": "✅ Logged in Successful!\nYou can now use the bot via inline",
+    "AlreadyLoggedIn": "You are already logged in, you can log out with /logout command.",
+    "LoginTry": "Try logging in with your in-game UID,\nExample: `/login in_game_UID`",
+    "NotYourAcc": "This is not your Genshin Impact Account!"
+}

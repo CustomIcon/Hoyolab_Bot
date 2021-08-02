@@ -5,7 +5,7 @@ from pyrogram import Client
 
 class bot(Client):
     def __init__(self, name):
-        config_file = f"{name}.ini"
+        config_file = f'{name}.ini'
         config = ConfigParser()
         config.read(config_file)
         name = name.lower()
@@ -19,11 +19,13 @@ class bot(Client):
             config_file=config_file,
             workers=16,
             plugins=plugins,
-            workdir="./",
+            workdir='./',
         )
+
     async def start(self):
         await super().start()
-        print("bot started. Hi.")
+        print('bot started. Hi.')
+
     async def stop(self, *args):
         await super().stop()
-        print("bot stopped. Bye.")
+        print('bot stopped. Bye.')

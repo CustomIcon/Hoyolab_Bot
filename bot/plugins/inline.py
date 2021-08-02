@@ -26,7 +26,6 @@ DEFAULT_TITLE = {
 }
 
 
-
 @bot.on_inline_query()
 async def inline_handle(_, query: types.InlineQuery):
     db = Database()
@@ -43,17 +42,17 @@ async def inline_handle(_, query: types.InlineQuery):
         return
     if string == '':
         try:
-            text = "╒═══「  **Stats**  」\n"
+            text = '╒═══「  **Stats**  」\n'
             for key, value in (
                 await loop.run_in_executor(
                     None,
                     lambda: gs.get_user_stats(
-                        int(user)
-                    )
+                        int(user),
+                    ),
                 )
             )['stats'].items():
                 text += f"│ • {key.replace('_', ' ')}: `{value}`\n"
-            text += f"╘══「 **UID**: `{user}`  」\n"
+            text += f'╘══「 **UID**: `{user}`  」\n'
             answers.append(
                 types.InlineQueryResultArticle(
                     title='Your Current IG Stats',
@@ -67,7 +66,7 @@ async def inline_handle(_, query: types.InlineQuery):
                 ),
             )
         except gs.errors.DataNotPublic:
-            text = "Logged Out"
+            text = 'Logged Out'
             answers.append(
                 types.InlineQueryResultArticle(
                     title='Your Data is not public Anymore, Bot will automatically log you out',
@@ -96,7 +95,9 @@ async def inline_handle(_, query: types.InlineQuery):
                         parse_mode='markdown',
                         disable_web_page_preview=True,
                     ),
-                    reply_markup=types.InlineKeyboardMarkup(DEFAULT_BUTTONS[i]),
+                    reply_markup=types.InlineKeyboardMarkup(
+                        DEFAULT_BUTTONS[i],
+                    ),
                     thumb_url=DEFAULT_THUMB[i],
                 ),
             )
@@ -117,14 +118,14 @@ async def inline_handle(_, query: types.InlineQuery):
                 element = '🔥'
             elif character['element'].lower() == 'geo':
                 element = '⛰'
-            name = f"Traveler({character['element']})" if character['name'] == "Traveler" else character['name']
+            name = f"Traveler({character['element']})" if character['name'] == 'Traveler' else character['name']
             text = f"{element} **{character['name']}** {''.join('⭐️' for _ in range(character['rarity']))}\n"
-            text += "=============\n"
+            text += '=============\n'
             text += f"**Level**: {character['level']}\n"
             text += f"**Friendship**: {character['friendship']}\n"
             text += f"**Constellation**: {character['constellation']}\n"
             if len(character['outfits']) != 0:
-                text += f"**Outfit**:\n"
+                text += f'**Outfit**:\n'
                 for outfit in character['outfits']:
                     text += f"- {outfit['name']}\n"
             answers.append(
@@ -135,29 +136,31 @@ async def inline_handle(_, query: types.InlineQuery):
                         text,
                         parse_mode='markdown',
                     ),
-                    thumb_url=character["icon"].replace('_image', '_icon').replace('@2x', ''),
+                    thumb_url=character['icon'].replace(
+                        '_image', '_icon',
+                    ).replace('@2x', ''),
                     reply_markup=types.InlineKeyboardMarkup(
                         [
                             [
                                 types.InlineKeyboardButton(
-                                    'Weapon', callback_data=f'w_{character["name"]}_{query.from_user.id}'
+                                    'Weapon', callback_data=f'w_{character["name"]}_{query.from_user.id}',
                                 ),
                                 types.InlineKeyboardButton(
-                                    'Artifacts', callback_data=f'a_{character["name"]}_{query.from_user.id}'
-                                )
+                                    'Artifacts', callback_data=f'a_{character["name"]}_{query.from_user.id}',
+                                ),
                             ],
                             [
                                 types.InlineKeyboardButton(
-                                    'Constellation', callback_data=f'c_{character["name"]}_{query.from_user.id}'
+                                    'Constellation', callback_data=f'c_{character["name"]}_{query.from_user.id}',
                                 ),
                                 types.InlineKeyboardButton(
-                                    'Characters', switch_inline_query_current_chat=f'characters '
-                                )
-                            ]
-                    
-                        ]
-                    )
-                )
+                                    'Characters', switch_inline_query_current_chat=f'characters ',
+                                ),
+                            ],
+
+                        ],
+                    ),
+                ),
             )
     elif string.split()[0] == 'exploration':
         for exp in gs.get_user_stats(int(user))['explorations']:
@@ -165,22 +168,22 @@ async def inline_handle(_, query: types.InlineQuery):
             explored = exp['explored']
             type = exp['type']
             level = exp['level']
-            text = f"**Name**: `{name}`\n"
-            text += f"**Type**: `{type}`\n"
-            text += f"**Level**: `{level}`\n"
-            text += f"**Explored**: `{explored}`\n"
+            text = f'**Name**: `{name}`\n'
+            text += f'**Type**: `{type}`\n'
+            text += f'**Level**: `{level}`\n'
+            text += f'**Explored**: `{explored}`\n'
             answers.append(
                 types.InlineQueryResultArticle(
                     title=name,
-                    description=f"Level: {level}",
+                    description=f'Level: {level}',
                     input_message_content=types.InputTextMessageContent(
                         text,
                         parse_mode='markdown',
                     ),
-                    thumb_url=exp['icon']
-                )
+                    thumb_url=exp['icon'],
+                ),
             )
-            
+
     await bot.answer_inline_query(
         query.id,
         results=answers,

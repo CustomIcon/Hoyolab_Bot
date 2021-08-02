@@ -9,8 +9,8 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.WARNING,
     handlers=[
-        logging.StreamHandler()
-    ]
+        logging.StreamHandler(),
+    ],
 )
 LOGS = logging.getLogger(__name__)
 
@@ -19,11 +19,14 @@ name = 'bot'
 loop = asyncio.get_event_loop()
 
 # Read from config file
-config_file = f"{name}.ini"
+config_file = f'{name}.ini'
 config = ConfigParser()
 config.read(config_file)
 
-gs.set_cookie(ltuid=config.getint('genshin', 'ltuid'), ltoken=config.get('genshin', 'ltoken')) # login
+gs.set_cookie(
+    ltuid=config.getint('genshin', 'ltuid'),
+    ltoken=config.get('genshin', 'ltoken'),
+)  # login
 
 # Extra details
 __version__ = '0.0.1'
