@@ -52,7 +52,7 @@ async def inline_handle(_, query: types.InlineQuery):
             )
         )['stats'].items():
             text += f"│ • {key.replace('_', ' ')}: `{value}`\n"
-        text += f'│ • server: `{await loop.run_in_executor(None, lambda: recognize_server(int(user)))}`\n'
+        text += f'│ • server: `{await loop.run_in_executor(None, lambda: recognize_server(int(Database().find_by_user_id(query.from_user.id))))}`\n'
         text += f'╘══「 **UID**: `{Database().find_by_user_id(query.from_user.id)}`  」\n'
         answers.append(
             types.InlineQueryResultArticle(
