@@ -124,6 +124,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 bot.ini
-venv/*
+.idea/*
 database.json
 *.session

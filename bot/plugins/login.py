@@ -6,7 +6,7 @@ from bot.utils import strings
 
 
 @bot.on_message(filters.command('login'))
-async def login_hanler(client, message):
+async def login_hanler(_, message: types.Message):
     if len(message.text.split(' ')) > 1:
         if not Database().find_by_user_id(message.from_user.id):
             try:

@@ -5,7 +5,7 @@ import genshinstats as gs
 
 
 @bot.on_callback_query(filters.regex('^c_'))
-async def weapon_show(_, query):
+async def weapon_show(_, query: types.CallbackQuery):
     character = query.data.split('_')[1]
     db = Database()
     uid = db.find_by_user_id(query.data.split('_')[2])

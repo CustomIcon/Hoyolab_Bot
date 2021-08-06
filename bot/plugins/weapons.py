@@ -1,11 +1,11 @@
 from bot import bot, loop
-from pyrogram import filters
+from pyrogram import filters, types
 from bot.db import Database
 import genshinstats as gs
 
 
 @bot.on_callback_query(filters.regex('^w_'))
-async def weapon_show(client, query):
+async def weapon_show(_, query: types.CallbackQuery):
     character = query.data.split('_')[1]
     for ch in await loop.run_in_executor(
         None, lambda: gs.get_characters(

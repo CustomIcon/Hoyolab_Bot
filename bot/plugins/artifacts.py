@@ -6,7 +6,7 @@ from bot.utils import strings
 
 
 @bot.on_callback_query(filters.regex('^a_'))
-async def artifacts_show(_, query):
+async def artifacts_show(_, query: types.CallbackQuery):
     character = query.data.split('_')[1]
     if query.from_user.id != int(query.data.split('_')[2]):
         return await query.answer(

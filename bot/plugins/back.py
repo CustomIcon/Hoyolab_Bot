@@ -5,7 +5,7 @@ import genshinstats as gs
 
 
 @bot.on_callback_query(filters.regex('^back_'))
-async def back_btn(_, query):
+async def back_btn(_, query: types.CallbackQuery):
     if query.from_user.id == int(query.data.split('_')[1]):
         db = Database()
         uid = db.find_by_user_id(query.data.split('_')[1])
