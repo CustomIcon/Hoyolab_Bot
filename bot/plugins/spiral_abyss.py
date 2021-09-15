@@ -13,12 +13,15 @@ async def spiral_abyss(_, query: types.InlineQuery):
     text += f"Total Wins: {res['stats']['total_wins']}\n"
     text += f"Max Floor: {res['stats']['max_floor']}\n"
     text += f"Total Stars: {res['stats']['total_stars']}\n\n"
-    text += f"Most Played Character: {res['character_ranks']['most_played'][0]['name']} - {res['character_ranks']['most_played'][0]['value']} times\n"
-    text += f'Most kills: {res["character_ranks"]["most_kills"][0]["name"]} - {res["character_ranks"]["most_kills"][0]["value"]} kills\n'
-    text += f'Strongest Strike: {res["character_ranks"]["strongest_strike"][0]["name"]} - {res["character_ranks"]["strongest_strike"][0]["value"]} DMG\n'
-    text += f'Most DMG Taken: {res["character_ranks"]["most_damage_taken"][0]["name"]} - {res["character_ranks"]["most_damage_taken"][0]["value"]} dmg taken\n'
-    text += f'Most Bursts Used: {res["character_ranks"]["most_bursts_used"][0]["name"]} - {res["character_ranks"]["most_bursts_used"][0]["value"]} bursts\n'
-    text += f'Most Skills Used: {res["character_ranks"]["most_skills_used"][0]["name"]} - {res["character_ranks"]["most_skills_used"][0]["value"]} times\n'
+    try:
+        text += f"Most Played Character: {res['character_ranks']['most_played'][0]['name']} - {res['character_ranks']['most_played'][0]['value']} times\n"
+        text += f'Most kills: {res["character_ranks"]["most_kills"][0]["name"]} - {res["character_ranks"]["most_kills"][0]["value"]} kills\n'
+        text += f'Strongest Strike: {res["character_ranks"]["strongest_strike"][0]["name"]} - {res["character_ranks"]["strongest_strike"][0]["value"]} DMG\n'
+        text += f'Most DMG Taken: {res["character_ranks"]["most_damage_taken"][0]["name"]} - {res["character_ranks"]["most_damage_taken"][0]["value"]} dmg taken\n'
+        text += f'Most Bursts Used: {res["character_ranks"]["most_bursts_used"][0]["name"]} - {res["character_ranks"]["most_bursts_used"][0]["value"]} bursts\n'
+        text += f'Most Skills Used: {res["character_ranks"]["most_skills_used"][0]["name"]} - {res["character_ranks"]["most_skills_used"][0]["value"]} times\n'
+    except IndexError:
+        ...
     answers.append(
         types.InlineQueryResultArticle(
             title="Spiral Abyss Data",
@@ -27,13 +30,13 @@ async def spiral_abyss(_, query: types.InlineQuery):
                 text,
                 parse_mode='markdown',
             ),
-            reply_markup=types.InlineKeyboardMarkup(
-                [
-                    [
-                        types.InlineKeyboardButton("Floor Details", callback_data=f"floor_{query.from_user.id}")
-                    ]
-                ]
-            )
+            # reply_markup=types.InlineKeyboardMarkup(
+            #     [
+            #         [
+            #             types.InlineKeyboardButton("Floor Details", callback_data=f"floor_{query.from_user.id}")
+            #         ]
+            #     ]
+            # )
         ),
     )
     await bot.answer_inline_query(
