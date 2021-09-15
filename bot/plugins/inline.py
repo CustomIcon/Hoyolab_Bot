@@ -9,6 +9,7 @@ DEFAULT_BUTTONS = {
     1: [[types.InlineKeyboardButton('Your Characters', switch_inline_query_current_chat='characters ')]],
     2: [[types.InlineKeyboardButton('Your Exploration', switch_inline_query_current_chat='exploration ')]],
     3: [[types.InlineKeyboardButton('Your Teapots', switch_inline_query_current_chat='teapots ')]],
+    4: [[types.InlineKeyboardButton('Your Stats', switch_inline_query_current_chat='spiral ')]],
 }
 
 DEFAULT_HELP = {
