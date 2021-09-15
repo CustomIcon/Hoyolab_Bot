@@ -15,18 +15,21 @@ DEFAULT_HELP = {
     1: '✨ List out all characters owned with details ~',
     2: '✨ View your Current Exploration Progress ~',
     3: '✨ View your Teapot Progress ~',
+    4: '✨ Spiral Abyss Stats ~',
 }
 
 DEFAULT_THUMB = {
     1: 'https://static.wikia.nocookie.net/gensin-impact/images/a/ab/Character_Noelle_Thumb.png/revision/latest/smart/width/250/height/250?cb=20210214011929',
     2: 'https://static.wikia.nocookie.net/gensin-impact/images/8/80/Emblem_Mondstadt.png/revision/latest?cb=20201116194623',
-    3: 'https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Item_Serenitea_Pot.png'
+    3: 'https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Item_Serenitea_Pot.png',
+    4: 'https://gblobscdn.gitbook.com/spaces%2F-MVAGyyACcSzyzfmgy7f%2Favatar-1615191145426.png?alt=media'
 }
 
 DEFAULT_TITLE = {
     1: 'Characters Owned',
     2: 'Exploration Progress',
-    3: 'Teapot Progress'
+    3: 'Teapot Progress',
+    4: 'Spiral Abyss stats'
 }
 
 
@@ -86,7 +89,7 @@ async def inline_handle(_, query: types.InlineQuery):
             is_gallery=False,
             cache_time=0,
         )
-    for i in range(1, 4):
+    for i in range(1, 5):
         answers.append(
             types.InlineQueryResultArticle(
                 title=DEFAULT_TITLE[i],
